@@ -1,49 +1,24 @@
 'use strict';
-const translations = {
-  navAbout:'关于',navResearch:'研究',navExperience:'经历',navNotes:'笔记',eyebrow:'研究 · 工程 · 探索',
-  statement:'让智能体学会<br>推理、搜索，<em>并付诸行动。</em>',
-  bio:'我目前就职于<strong>阿里淘天</strong>，关注智能体、大语言模型与实际系统的交叉。此前在<strong>腾讯混元</strong>从事大模型相关工作，硕士毕业于<strong>南京大学应用数学专业</strong>。',
-  getInTouch:'联系我',viewResearch:'探索我的工作',location:'中国 · 杭州',degree:'应用数学硕士',visualCaption:'以更好的反馈，构建更好的智能体。',journey:'一路走来',ali:'阿里淘天',tencent:'腾讯混元',nju:'南京大学',
-  focusLabel:'研究方向',focusTitle:'我关注的问题<span class="accent">。</span>',focusIntro:'连接学习算法与实际系统，让研究走向可用。',
-  focus1:'智能体后训练',focus1Text:'通过监督微调、强化学习与奖励建模，提升智能体的推理与工具使用能力。',focus2:'搜索与工具使用',focus2Text:'面向真实任务的深度搜索、函数调用与工具路由。',focus3:'评测与数据',focus3Text:'通过可验证反馈、合成数据与细粒度错误归因，构建持续改进的数据闭环。',
-  researchLabel:'学术研究',researchTitle:'精选研究<span class="accent">。</span>',researchNote:'工具智能、高效推理<br>与稳健的多模态学习。',paper1Contribution:'共同第一作者 · 同等贡献',paper1Topic:'工具使用 · 评测',paper2Topic:'大模型系统 · 推理效率',paper3Topic:'多模态学习 · 稳健性',
-  paper1Summary:'通过结构化决策与细粒度错误归因，诊断工具调用在何处、因何失败。',paper2Summary:'利用 KV 缓存扰动对模型输出的影响衡量层间敏感度，分配缓存预算，提升长上下文推理效率。',paper3Summary:'探索注意力头的模态专业化，以提升输入模态缺失时的虚假新闻检测稳健性。',paper3Status:'研究稿件',manuscriptNote:'共同第一作者 · 简历中标注为在投。',
-  experienceLabel:'工作经历',experienceTitle:'研究与工作经历',aliDate:'2026 — 至今',aliSub:'智能体 · 大模型系统 · 多模态学习',aliText:'在杭州探索人工智能研究，构建实用的智能系统。',tencentSub:'大语言模型部',tencentText:'聚焦 Deep Search 与工具使用的智能体后训练，包括奖励建模与评测。',
-  educationLabel:'教育背景',masters:'应用数学 · 硕士',mathSchool:'数学学院',nuc:'中北大学',bachelors:'信息与计算科学 · 本科',mathNote:'以数学为基础，<br>以系统为思维。',
-  notesLabel:'公开学习与分享',notesTitle:'工作台上的思考<span class="accent">。</span>',notesIntro:'每日一题，把大模型知识拆成一千个切面。记录研究想法、系统设计与工程取舍。',readNotes:'翻开这本笔记 <svg class="external-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M4 4h8v8"/></svg>',note1:'DeepSearch：Query 筛选与高难题构造',note2:'混合 RL 数据整合与多教师在线蒸馏',
-  awardsLabel:'荣誉与竞赛',awardsTitle:'一些成长的足迹<span class="accent">。</span>',award1:'百度生成式 AI 大模型竞赛',award1Detail:'二等奖 · 14 / 837',award2:'Kaggle 竞赛',award2Detail:'大模型竞赛银牌 · 机器学习竞赛铜牌',award3:'科大讯飞星火大模型实体识别挑战赛',award3Detail:'第四名',award4:'数学建模与数学竞赛',award4Detail:'全国大学生数学建模竞赛全国二等奖（2020）· 美国大学生数学建模竞赛 M 奖（2021）',
-  contactLabel:'保持联系',contactTitle:'好想法，<br>从一次<em>交流</em>开始。',contactText:'欢迎交流智能体、学习算法，以及连接两者的系统。',copyEmail:'复制邮箱',outsideWork:'键盘之外：网球、羽毛球、游泳，还有攀岩。',footer:'保持好奇，持续探索。',backTop:'回到顶部 ↑'
-};
-Object.assign(translations, {"cvSkills": "专业技能", "cvSkillsBody": "Python · PyTorch · Paddle；SFT、奖励建模、RLHF、LoRA；PPO、DPO、GRPO、OPD；Function Calling、Tool Routing、Rubric / Verifier / Judge、轨迹生产与合成数据闭环。"});
-const nodes = [...document.querySelectorAll('[data-i18n]')];
-const english = new Map(nodes.map(node => [node, node.innerHTML]));
-const languageButton = document.querySelector('.language-toggle');
-let language = 'en';
-function setLanguage(next) {
-  language = next === 'zh' ? 'zh' : 'en';
-  document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
-  nodes.forEach(node => {node.innerHTML = language === 'zh' ? translations[node.dataset.i18n] ?? english.get(node) : english.get(node);});
-  languageButton.textContent = language === 'zh' ? 'EN' : '中文';
-  languageButton.setAttribute('aria-label',language === 'zh' ? 'Switch to English' : '切换到中文');
-  document.title = language === 'zh' ? '徐業釗 · Julius — 智能体、学习与系统' : 'Yezhao Xu · Julius — Agents, Learning & Systems';
-  try { localStorage.setItem('yx-language', language); } catch (_) { /* Storage may be disabled. */ }
+const translations={
+navAbout:'关于',navExperience:'经历',navPapers:'论文',affiliation:'阿里淘天',location:'中国 · 杭州',notebookNote:'研究与工程笔记',aboutTitle:'关于我',
+aboutText:'我是<strong>徐業釗（Yezhao Xu / Julius）</strong>，目前就职于<a href="https://www.alibabagroup.com/" target="_blank" rel="noopener noreferrer">阿里淘天</a>，此前在<strong>腾讯混元</strong>从事大模型后训练工作。2025 年获得<a href="https://www.nju.edu.cn/" target="_blank" rel="noopener noreferrer">南京大学</a>应用数学硕士学位。',
+aboutResearch:'研究兴趣包括<strong>智能体、大模型后训练和工具使用</strong>，尤其关注奖励建模、深度搜索与评测。',
+contactLine:'欢迎通过 <a href="mailto:zyx20002018@163.com">zyx20002018 [at] 163.com</a> 与我交流。',
+interestsTitle:'研究方向',interest1:'智能体强化学习与奖励建模',interest2:'深度搜索与工具使用',interest3:'大模型评测与合成数据',experienceTitle:'工作经历',aliDate:'2026 – 至今',ali:'阿里淘天',aliWork:'智能体、大模型系统与多模态学习。',tencent:'腾讯混元 · 大语言模型部',tencentWork:'面向 Deep Search 与工具使用的大模型后训练。',educationTitle:'教育背景',nju:'南京大学',degree:'数学学院 · 应用数学硕士',papersTitle:'精选论文',paperNote:'* 表示同等贡献。以下包含预印本与研究稿件。',manuscript:'研究稿件 · 共同第一作者',awardsTitle:'荣誉与奖项',
+award1:'<strong>百度生成式 AI 大模型竞赛</strong> — 二等奖（14 / 837）',award2:'<strong>Kaggle</strong> — 大模型竞赛银牌、机器学习竞赛铜牌',award3:'<strong>科大讯飞星火实体识别挑战赛</strong> — 第四名',award4:'<strong>数学建模竞赛</strong> — 全国大学生数学建模竞赛全国二等奖（2020）；美国大学生数学建模竞赛 M 奖（2021）',notesTitle:'技术笔记',notesText:'<a href="https://github.com/pkcontinue/thousand-faces-of-llm" target="_blank" rel="noopener noreferrer"><strong>千面 LLM</strong></a><br>以问题为线索，记录大模型研究与工程实践。',source:'网站源码'};
+const nodes=[...document.querySelectorAll('[data-i18n]')];
+const english=new Map(nodes.map(node=>[node,node.innerHTML]));
+const languageButton=document.querySelector('.language-toggle');
+let language='en';
+function setLanguage(next){
+ language=next==='zh'?'zh':'en';
+ document.documentElement.lang=language==='zh'?'zh-CN':'en';
+ nodes.forEach(node=>{node.innerHTML=language==='zh'?translations[node.dataset.i18n]??english.get(node):english.get(node);});
+ languageButton.textContent=language==='zh'?'EN':'中文';
+ languageButton.setAttribute('aria-label',language==='zh'?'Switch to English':'切换到中文');
+ document.title=language==='zh'?'徐業釗 | 学术主页':'Yezhao Xu | Academic Homepage';
+ try{localStorage.setItem('yx-language',language);}catch(_){/* Storage is optional. */}
 }
-languageButton.addEventListener('click', () => setLanguage(language === 'en' ? 'zh' : 'en'));
-try {if (localStorage.getItem('yx-language') === 'zh') setLanguage('zh');} catch (_) { /* Default to English. */ }
-document.getElementById('year').textContent = new Date().getFullYear();
-const toast = document.getElementById('toast');
-let toastTimer;
-function notify(message) {toast.textContent=message;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2500);}
-document.getElementById('copy-email').addEventListener('click', async () => {
-  const email='zyx20002018@163.com';
-  try {await navigator.clipboard.writeText(email);notify(language==='zh'?'邮箱已复制':'Email copied');}
-  catch (_) {
-    const range=document.createRange();range.selectNodeContents(document.querySelector('.contact-email'));const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);
-    notify(language==='zh'?'请手动复制选中的邮箱':'Select and copy the email address');
-  }
-});
-if ('IntersectionObserver' in window) {
-  const links=[...document.querySelectorAll('nav a')];
-  const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting)links.forEach(link=>{const active=link.hash==='#'+entry.target.id;link.classList.toggle('active',active);if(active)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');});});},{rootMargin:'-15% 0px -65% 0px',threshold:0});
-  ['about','research','experience','notes'].forEach(id=>observer.observe(document.getElementById(id)));
-}
+languageButton.addEventListener('click',()=>setLanguage(language==='en'?'zh':'en'));
+try{if(localStorage.getItem('yx-language')==='zh')setLanguage('zh');}catch(_){/* Use English by default. */}
+document.getElementById('year').textContent=new Date().getFullYear();

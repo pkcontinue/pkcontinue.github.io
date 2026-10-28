@@ -1,6 +1,6 @@
 # Yezhao Xu · Julius
 
-A responsive bilingual academic homepage for **[pkcontinue.github.io](https://pkcontinue.github.io/)**. Warm ivory, forest green, editorial typography, and original research diagrams. No portrait. Built with plain HTML, CSS, and JavaScript, with no build dependencies.
+A responsive bilingual academic homepage for **[pkcontinue.github.io](https://pkcontinue.github.io/)**. A clean academic layout with a profile sidebar, white background, and compact text sections. No portrait. Built with plain HTML, CSS, and JavaScript, with no build dependencies.
 
 ## Publish to GitHub Pages
 
@@ -18,7 +18,7 @@ Alternatively, select **Deploy from a branch → main → / (root)** in Pages se
 python3 -m http.server 8000
 ```
 
-Then open http://localhost:8000. Language selection is stored locally in the browser. The email copy action works on HTTPS and localhost, with a manual-selection fallback. Navigation, content, email, and paper links work without JavaScript.
+Then open http://localhost:8000. Language selection is stored locally in the browser. Navigation, content, email, and paper links work without JavaScript. After changing styles or JavaScript, update their `?v=` version in `index.html` to refresh browser caches.
 
 ## Edit content
 
@@ -27,7 +27,7 @@ Then open http://localhost:8000. Language selection is stored locally in the bro
 - **Colors, typography, and responsive layout:** `style.css`
 - **Icon and sharing artwork:** `assets/`
 
-There are no analytics, trackers, account systems, or backend dependencies. Fonts are self-hosted, with local system fallbacks and bundled OFL licenses.
+There are no analytics, trackers, account systems, or backend dependencies. The current layout uses system fonts and does not load external font services.
 
 ## Content provenance
 
