@@ -26,6 +26,8 @@ Then open http://localhost:8000. Language selection is stored locally in the bro
 - **Papers:** `publications.html`
 - **Honors and competition results:** `honors.html`
 - **Chinese copy:** the `translations` object in `script.js`
+- **BibTeX citations:** the `citations` object in `script.js` (update alongside paper metadata)
+- **Social sharing image:** `assets/share-preview.png`
 - **Colors, typography, and responsive layout:** `style.css`
 - **Icon and sharing artwork:** `assets/`
 
